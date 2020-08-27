@@ -11,4 +11,4 @@ const main = async () => {
 
 main();
 
-console.log('yo world sup?');
+console.log('Server Running?');

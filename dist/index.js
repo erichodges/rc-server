@@ -22,5 +22,5 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     yield orm.em.persistAndFlush(post);
 });
 main();
-console.log('yo world sup?');
+console.log('Server Running?');
 //# sourceMappingURL=index.js.map
