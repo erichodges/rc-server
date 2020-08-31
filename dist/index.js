@@ -29,7 +29,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         })
     });
     apolloServer.applyMiddleware({ app });
-    app.listen(4000, () => {
+    app.listen(4444, () => {
         console.log('Server started on localhost:4000');
     });
 });
