@@ -22,7 +22,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PostResolver = void 0;
-const process_1 = require("process");
 const Post_1 = require("src/entities/Post");
 const type_graphql_1 = require("type-graphql");
 let PostResolver = class PostResolver {
@@ -30,7 +29,7 @@ let PostResolver = class PostResolver {
         return em.find(Post_1.Post, {});
     }
     post(id, { em }) {
-        return process_1.emit.findOne(post, { id });
+        return em.findOne(Post_1.Post, { id });
     }
     createPost(title, { em }) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -39,15 +38,15 @@ let PostResolver = class PostResolver {
             return post;
         });
     }
-    updatePost(id, title, { em }, MyContext) {
+    updatePost(id, title, { em }) {
         return __awaiter(this, void 0, void 0, function* () {
             const post = yield em.findOne(Post_1.Post, { id });
             if (!post) {
                 return null;
             }
             if (typeof title !== 'undefined') {
-                post.tilte = title;
-                yield em.persistAndFluch(post);
+                post.title = title;
+                yield em.persistAndFlush(post);
             }
             return post;
         });
@@ -55,8 +54,7 @@ let PostResolver = class PostResolver {
     deletePost(id, { em }) {
         return __awaiter(this, void 0, void 0, function* () {
             yield em.nativeDelete(Post_1.Post, { id });
-            rreturn;
-            true;
+            return true;
         });
     }
 };
@@ -88,7 +86,7 @@ __decorate([
     __param(1, type_graphql_1.Arg('title', () => String, { nullable: true })),
     __param(2, type_graphql_1.Ctx()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, String, Object, Object]),
+    __metadata("design:paramtypes", [Number, String, Object]),
     __metadata("design:returntype", Promise)
 ], PostResolver.prototype, "updatePost", null);
 __decorate([
