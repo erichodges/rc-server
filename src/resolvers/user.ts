@@ -1,9 +1,11 @@
-import { Query, Resolver } from 'type-graphql';
+import { Arg, Mutation, Resolver } from 'type-graphql';
 
 @Resolver()
 export class UserResolver {
-  @Query(() => String)
-  register() {
+  @Mutation(() => String)
+  register(
+    @Arg()
+  ) {
     return 'hello People';
   }
 }
