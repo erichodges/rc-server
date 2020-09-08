@@ -70,13 +70,33 @@ UserResponse = __decorate([
 let UserResolver = class UserResolver {
     register(options, { em }) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (options.username.length <= 2) {
+                return {
+                    errors: [
+                        {
+                            field: 'username',
+                            message: 'Please make your username 2 or more characters long'
+                        }
+                    ]
+                };
+            }
+            if (options.password.length <= 2) {
+                return {
+                    errors: [
+                        {
+                            field: 'password',
+                            message: 'Please make your password 2 or more characters long'
+                        }
+                    ]
+                };
+            }
             const hashedPassword = yield argon2_1.default.hash(options.password);
             const user = em.create(User_1.User, {
                 username: options.username,
                 password: hashedPassword
             });
             yield em.persistAndFlush(user);
-            return user;
+            return { user };
         });
     }
     login(options, { em }) {
@@ -110,7 +130,7 @@ let UserResolver = class UserResolver {
     }
 };
 __decorate([
-    type_graphql_1.Mutation(() => User_1.User),
+    type_graphql_1.Mutation(() => UserResponse),
     __param(0, type_graphql_1.Arg('options')),
     __param(1, type_graphql_1.Ctx()),
     __metadata("design:type", Function),
