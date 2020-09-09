@@ -29,9 +29,6 @@ const main = async () => {
   app.listen(4444, () => {
     console.log('Server started on localhost:4444');
   });
-
-  // const post = orm.em.create(Post, { title: 'test post' });
-  // await orm.em.persistAndFlush(post);
 };
 
 main().catch((err) => {
