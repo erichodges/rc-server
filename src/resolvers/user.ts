@@ -28,6 +28,19 @@ class FieldError {
   message: string;
 }
 
+// @Resolver()
+// export class UserResolver {
+//   @Query(() => userInfo, { nullable: true })
+//   async me(@Ctx() { req, em }: MyContext) {
+//     // checking for logged in user:
+//     if (!req.session.userId) {
+//       return null;
+//     }
+//     const user = await em.findOne(User, { id: req.session.userId });
+//     return user;
+//   }
+// }
+
 // Object types get returned
 @ObjectType()
 class UserResponse {

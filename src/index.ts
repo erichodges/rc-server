@@ -29,7 +29,6 @@ const main = async () => {
       name: 'qid',
       store: new RedisStore({
         client: redisClient,
-        // disableTTL: true,
         disableTouch: true
       }),
       cookie: {
