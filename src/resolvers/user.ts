@@ -62,7 +62,7 @@ export class UserResolver {
         errors: [
           {
             field: 'username',
-            message: 'Please make your username 2 or more characters long'
+            message: 'Please make your username 2 or more characters'
           }
         ]
       };
@@ -72,7 +72,7 @@ export class UserResolver {
         errors: [
           {
             field: 'password',
-            message: 'Please make your password 2 or more characters long'
+            message: 'Please make your password 2 or more characters'
           }
         ]
       };
@@ -118,7 +118,7 @@ export class UserResolver {
         errors: [
           {
             field: 'username',
-            message: 'That username does not exist'
+            message: 'Incorrect username or password'
           }
         ]
       };
@@ -129,7 +129,7 @@ export class UserResolver {
         errors: [
           {
             field: 'password',
-            message: 'incorrect password'
+            message: 'Incorrect username or password'
           }
         ]
       };
