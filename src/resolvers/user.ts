@@ -103,7 +103,7 @@ export class UserResolver {
     // this will set a cookie on the user
     // to keep them logged in
     req.session.userId = user.id;
-
+    // console.log({ user });
     return { user };
   }
 
@@ -136,7 +136,6 @@ export class UserResolver {
     }
 
     req.session.userId = user.id;
-
     return {
       user
     };
