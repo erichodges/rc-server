@@ -1,5 +1,4 @@
 import { MikroORM } from '@mikro-orm/core';
-// import {__prod__ } from './constants';
 import { ApolloServer } from 'apollo-server-express';
 import connectRedis from 'connect-redis';
 import cors from 'cors';
@@ -8,7 +7,6 @@ import session from 'express-session';
 import redis from 'redis';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
-import { __prod__ } from './constants';
 // import { Post } from './entities/Post';
 import microConfig from './mikro-orm.config';
 import { HelloResolver } from './resolvers/hello';
@@ -42,8 +40,8 @@ const main = async () => {
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 365 * 10, // 10 years
         httpOnly: true,
-        sameSite: 'lax', // csrf setup - google this
-        secure: __prod__ // Cookie only works with https! careful
+        sameSite: 'lax' // csrf setup - google this
+        // secure: __prod__ // Cookie only works with https! careful
       },
       saveUninitialized: false,
       secret: 'kajsjdiasdjaksfj45678', // ToDo:setup-dotenv-etc

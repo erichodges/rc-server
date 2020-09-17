@@ -21,7 +21,6 @@ const express_session_1 = __importDefault(require("express-session"));
 const redis_1 = __importDefault(require("redis"));
 require("reflect-metadata");
 const type_graphql_1 = require("type-graphql");
-const constants_1 = require("./constants");
 const mikro_orm_config_1 = __importDefault(require("./mikro-orm.config"));
 const hello_1 = require("./resolvers/hello");
 const post_1 = require("./resolvers/post");
@@ -45,8 +44,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
             httpOnly: true,
-            sameSite: 'lax',
-            secure: constants_1.__prod__
+            sameSite: 'lax'
         },
         saveUninitialized: false,
         secret: 'kajsjdiasdjaksfj45678',
