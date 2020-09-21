@@ -10,6 +10,7 @@ import {
   Query,
   Resolver
 } from 'type-graphql';
+import { COOKIE_NAME } from '../constants';
 import { User } from '../entities/User';
 import { MyContext } from '../types';
 
@@ -43,7 +44,7 @@ class UserResponse {
 @Resolver()
 export class UserResolver {
   @Query(() => User, { nullable: true })
-  async me(@Ctx() { req, em }: MyContext) {
+  async user(@Ctx() { req, em }: MyContext) {
     console.log('session: ', req.session);
     // checking for logged in user:
     if (!req.session.userId) {
@@ -147,5 +148,20 @@ export class UserResolver {
     return {
       user
     };
+  }
+
+  @Mutation(() => Boolean)
+  logout(@Ctx() { req, res }: MyContext) {
+    return new Promise((resolve) =>
+      req.session.destroy((err) => {
+        res.clearCookie(COOKIE_NAME);
+        if (err) {
+          console.log(err);
+          resolve(false);
+          return;
+        }
+        resolve(true);
+      })
+    );
   }
 }
