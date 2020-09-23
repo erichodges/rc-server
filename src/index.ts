@@ -14,8 +14,10 @@ import { HelloResolver } from './resolvers/hello';
 import { PostResolver } from './resolvers/post';
 import { UserResolver } from './resolvers/user';
 import { MyContext } from './types';
+import { sendEmail } from './utils/sendEmail';
 
 const main = async () => {
+  sendEmail('bob@bob.com', 'yo dude');
   const orm = await MikroORM.init(microConfig);
   await orm.getMigrator().up();
 
