@@ -1,5 +1,6 @@
 import { EntityManager } from '@mikro-orm/postgresql';
 import argon2 from 'argon2';
+import { MyContext } from 'src/types';
 import {
   Arg,
   Ctx,
@@ -12,7 +13,6 @@ import {
 } from 'type-graphql';
 import { COOKIE_NAME } from '../constants';
 import { User } from '../entities/User';
-import { MyContext } from '../types';
 
 //  InputTypes are used as arguments
 @InputType()
@@ -43,6 +43,12 @@ class UserResponse {
 
 @Resolver()
 export class UserResolver {
+  // @Mutation(() => Boolean)
+  // async forgotPassword(@Arg('email') email: string, @Ctx() { em }: MyContext) {
+  // const user = await em.findOne(User, { email });
+  // return true;
+  // }
+
   @Query(() => User, { nullable: true })
   async user(@Ctx() { req, em }: MyContext) {
     console.log('session: ', req.session);
