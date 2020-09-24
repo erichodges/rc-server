@@ -21,8 +21,8 @@ function sendEmail(to, html) {
             port: 587,
             secure: false,
             auth: {
-                user: 'ypl3aqhfdsn6wxmj@ethereal.email',
-                pass: 'SPkf1pu5eGjCjGzDp2'
+                user: process.env.ETHEREAL_USER,
+                pass: process.env.ETHEREAL_PASSWORD
             }
         });
         let info = yield transporter.sendMail({

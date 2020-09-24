@@ -1,3 +1,4 @@
+// import 'dotenv-safe/config';
 import nodemailer from 'nodemailer';
 
 // async..await is not allowed in global scope, must use a wrapper
@@ -14,8 +15,8 @@ export async function sendEmail(to: string, html: string) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: 'ypl3aqhfdsn6wxmj@ethereal.email', // generated ethereal user
-      pass: 'SPkf1pu5eGjCjGzDp2' // generated ethereal password
+      user: process.env.ETHEREAL_USER, // generated ethereal user
+      pass: process.env.ETHEREAL_PASSWORD // generated ethereal password
     }
   });
 

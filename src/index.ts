@@ -14,6 +14,7 @@ import { HelloResolver } from './resolvers/hello';
 import { PostResolver } from './resolvers/post';
 import { UserResolver } from './resolvers/user';
 import { MyContext } from './types';
+// import { sendEmail } from './utils/sendEmail';  // use to generate new user/pwd from nodemailer
 
 const main = async () => {
   // sendEmail('bob@bob.com', 'yo dude');
