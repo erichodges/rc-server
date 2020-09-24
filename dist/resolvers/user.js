@@ -26,9 +26,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserResolver = void 0;
 const argon2_1 = __importDefault(require("argon2"));
-const validateRegister_1 = require("src/utils/validateRegister");
 const type_graphql_1 = require("type-graphql");
+const constants_1 = require("../constants");
 const User_1 = require("../entities/User");
+const validateRegister_1 = require("../utils/validateRegister");
 const UsernamePasswordInput_1 = require("./UsernamePasswordInput");
 let FieldError = class FieldError {
 };
@@ -139,7 +140,7 @@ let UserResolver = class UserResolver {
     }
     logout({ req, res }) {
         return new Promise((resolve) => req.session.destroy((err) => {
-            res.clearCookie(COOKIE_NAME);
+            res.clearCookie(constants_1.COOKIE_NAME);
             if (err) {
                 console.log(err);
                 resolve(false);

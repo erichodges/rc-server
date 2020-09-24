@@ -1,7 +1,6 @@
 import { EntityManager } from '@mikro-orm/postgresql';
 import argon2 from 'argon2';
 import { MyContext } from 'src/types';
-import { validateRegister } from 'src/utils/validateRegister';
 import {
   Arg,
   Ctx,
@@ -11,8 +10,9 @@ import {
   Query,
   Resolver
 } from 'type-graphql';
-// import { COOKIE_NAME } from '../constants';
+import { COOKIE_NAME } from '../constants';
 import { User } from '../entities/User';
+import { validateRegister } from '../utils/validateRegister';
 import { UsernamePasswordInput } from './UsernamePasswordInput';
 
 @ObjectType()
