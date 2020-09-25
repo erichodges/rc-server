@@ -8,7 +8,11 @@ export async function sendEmail(to: string, html: string) {
   // let testAccount = await nodemailer.createTestAccount();
 
   // console.log('testAccount', testAccount);
-
+  console.log(
+    'user:',
+    process.env.ETHEREAL_USER,
+    process.env.ETHEREAL_PASSWORD
+  );
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',

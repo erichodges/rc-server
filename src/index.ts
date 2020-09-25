@@ -1,3 +1,4 @@
+require('dotenv-safe').config();
 import { MikroORM } from '@mikro-orm/core';
 import { ApolloServer } from 'apollo-server-express';
 import connectRedis from 'connect-redis';
