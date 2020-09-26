@@ -49,7 +49,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
             sameSite: 'lax'
         },
         saveUninitialized: false,
-        secret: 'kajsjdiasdjaksfj45678',
+        secret: process.env.SESSION_SECRET,
         resave: false
     }));
     const apolloServer = new apollo_server_express_1.ApolloServer({

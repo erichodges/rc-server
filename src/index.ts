@@ -48,7 +48,7 @@ const main = async () => {
         // secure: __prod__ // Cookie only works with https! careful
       },
       saveUninitialized: false,
-      secret: 'kajsjdiasdjaksfj45678', // ToDo:setup-dotenv-etc
+      secret: process.env.SESSION_SECRET, // ToDo:setup-dotenv-etc
       resave: false
     })
   );
