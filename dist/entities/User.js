@@ -35,9 +35,9 @@ __decorate([
 ], User.prototype, "updatedAt", void 0);
 __decorate([
     type_graphql_1.Field(),
-    typeorm_1.Column({ unique: true }, username, string),
-    __metadata("design:type", Object)
-], User.prototype, "", void 0);
+    typeorm_1.Column({ unique: true }),
+    __metadata("design:type", String)
+], User.prototype, "username", void 0);
 __decorate([
     type_graphql_1.Field(),
     typeorm_1.Column({ unique: true }),
