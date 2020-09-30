@@ -20,14 +20,14 @@ const main = async () => {
   // sendEmail('bob@bob.com', 'yo dude');
   const conn = createConnection({
     type: 'postgres',
-    database: 'reddit',
+    database: 'reddit-clone2',
     username: 'postgres',
     password: 'postgres',
     logging: true,
     synchronize: true,
     entities: [Post, User]
   });
-
+  console.log(conn);
   const app = express();
 
   const RedisStore = connectRedis(session);
