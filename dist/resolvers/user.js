@@ -85,8 +85,7 @@ let UserResolver = class UserResolver {
                     ]
                 };
             }
-            const userIdNum = parseInt(userId);
-            const user = yield User_1.User.findOne(userIdNum);
+            const user = yield User_1.User.findOne(userId);
             if (!user) {
                 return {
                     errors: [
@@ -97,7 +96,7 @@ let UserResolver = class UserResolver {
                     ]
                 };
             }
-            yield User_1.User.update({ id: userIdNum }, {
+            yield User_1.User.update({ id: userId }, {
                 password: yield argon2_1.default.hash(newPassword)
             });
             yield redis.del(key);

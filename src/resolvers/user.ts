@@ -66,8 +66,8 @@ export class UserResolver {
       };
     }
 
-    const userIdNum = parseInt(userId);
-    const user = await User.findOne(userIdNum);
+    // const userIdNum = parseInt(userId);
+    const user = await User.findOne(userId);
 
     if (!user) {
       return {
@@ -81,7 +81,7 @@ export class UserResolver {
     }
 
     await User.update(
-      { id: userIdNum },
+      { id: userId },
       {
         password: await argon2.hash(newPassword)
       }
