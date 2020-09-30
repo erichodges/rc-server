@@ -1,5 +1,4 @@
 require('dotenv-safe').config();
-import { MikroORM } from '@mikro-orm/core';
 import { ApolloServer } from 'apollo-server-express';
 import connectRedis from 'connect-redis';
 import cors from 'cors';
@@ -8,19 +7,26 @@ import session from 'express-session';
 import Redis from 'ioredis';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
+import { createConnection } from 'typeorm';
 import { COOKIE_NAME } from './constants';
-// import { Post } from './entities/Post';
-import microConfig from './mikro-orm.config';
+import { Post } from './entities/Post';
+import { User } from './entities/User';
 import { HelloResolver } from './resolvers/hello';
 import { PostResolver } from './resolvers/post';
 import { UserResolver } from './resolvers/user';
-import { MyContext } from './types';
 // import { sendEmail } from './utils/sendEmail';  // use to generate new user/pwd from nodemailer
 
 const main = async () => {
   // sendEmail('bob@bob.com', 'yo dude');
-  const orm = await MikroORM.init(microConfig);
-  await orm.getMigrator().up();
+  const conn = createConnection({
+    type: 'postgres',
+    database: 'reddit',
+    username: 'postgres',
+    password: 'postgres',
+    logging: true,
+    synchronize: true,
+    entities: [Post, User]
+  });
 
   const app = express();
 
@@ -48,7 +54,7 @@ const main = async () => {
         // secure: __prod__ // Cookie only works with https! careful
       },
       saveUninitialized: false,
-      secret: process.env.SESSION_SECRET, // ToDo:setup-dotenv-etc
+      secret: process.env.SESSION_SECRET,
       resave: false
     })
   );
@@ -58,12 +64,7 @@ const main = async () => {
       resolvers: [HelloResolver, PostResolver, UserResolver],
       validate: false
     }),
-    context: ({ req, res }): MyContext => ({
-      em: orm.em,
-      req: req as MyContext['req'],
-      redis,
-      res
-    })
+    context: ({ req, res }) => ({ req, res, redis })
   });
 
   apolloServer.applyMiddleware({ app, cors: false });
