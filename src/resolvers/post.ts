@@ -66,7 +66,9 @@ export class PostResolver {
       ${cursor ? `where p."createdAt" < $2` : ''}
       order by p."createdAt" DESC
       limit $1
-    `)
+    `,
+        replacements
+    )
 
     // const qb = getConnection()
     //   .getRepository(Post)

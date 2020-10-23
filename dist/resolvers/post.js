@@ -78,7 +78,7 @@ let PostResolver = class PostResolver {
       ${cursor ? `where p."createdAt" < $2` : ''}
       order by p."createdAt" DESC
       limit $1
-    `);
+    `, replacements);
             return {
                 posts: posts.slice(0, postLimit),
                 hasMore: posts.length === postLimitPlusOne
