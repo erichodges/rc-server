@@ -11,6 +11,7 @@ import { createConnection } from 'typeorm';
 import { COOKIE_NAME } from './constants';
 import { Post } from './entities/Post';
 import { User } from './entities/User';
+import { Vote } from './entities/Vote';
 import { HelloResolver } from './resolvers/hello';
 import { PostResolver } from './resolvers/post';
 import { UserResolver } from './resolvers/user';
@@ -25,7 +26,7 @@ const main = async () => {
     password: 'postgres',
     logging: true,
     synchronize: true,
-    entities: [Post, User]
+    entities: [Post, User, Vote]
   });
   console.log(conn);
   const app = express();

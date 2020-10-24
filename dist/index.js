@@ -25,6 +25,7 @@ const typeorm_1 = require("typeorm");
 const constants_1 = require("./constants");
 const Post_1 = require("./entities/Post");
 const User_1 = require("./entities/User");
+const Vote_1 = require("./entities/Vote");
 const hello_1 = require("./resolvers/hello");
 const post_1 = require("./resolvers/post");
 const user_1 = require("./resolvers/user");
@@ -36,7 +37,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         password: 'postgres',
         logging: true,
         synchronize: true,
-        entities: [Post_1.Post, User_1.User]
+        entities: [Post_1.Post, User_1.User, Vote_1.Vote]
     });
     console.log(conn);
     const app = express_1.default();
