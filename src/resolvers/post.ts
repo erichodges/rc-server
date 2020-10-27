@@ -16,6 +16,7 @@ import { getConnection } from 'typeorm';
 import { Post } from '../entities/Post';
 import { isAuth } from '../middleware/isAuth';
 import { MyContext } from '../types';
+
 @InputType()
 class PostInput {
   @Field()
