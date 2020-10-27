@@ -50,6 +50,7 @@ export class PostResolver {
     const isUpvote = value !== -1;
     const realValue = isUpvote ? 1 : -1;
     const { userId } = req.session;
+    // const userId = req.session.userId;
 
     await getConnection().query(
       `

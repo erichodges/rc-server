@@ -21,7 +21,7 @@ __decorate([
 ], Vote.prototype, "value", void 0);
 __decorate([
     typeorm_1.PrimaryColumn(),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], Vote.prototype, "userId", void 0);
 __decorate([
     typeorm_1.ManyToOne(() => User_1.User, (user) => user.votes),

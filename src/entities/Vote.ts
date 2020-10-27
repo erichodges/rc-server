@@ -15,7 +15,7 @@ export class Vote extends BaseEntity {
   value: number;
 
   @PrimaryColumn()
-  userId: number;
+  userId: string;
 
   @ManyToOne(() => User, (user) => user.votes)
   user: User;
