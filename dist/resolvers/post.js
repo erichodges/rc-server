@@ -64,7 +64,7 @@ let PostResolver = class PostResolver {
             yield typeorm_1.getConnection().query(`
       START TRANSACTION;
 
-      insert into vote ('userId', 'postId', value)
+      insert into vote ("userId", "postId", value)
       values (${userId},${postId},${realValue});
 
       update post

@@ -52,11 +52,10 @@ export class PostResolver {
     const { userId } = req.session;
     // const userId = req.session.userId;
 
-    await getConnection().query(
-      `
+    await getConnection().query(`
       START TRANSACTION;
 
-      insert into vote ('userId', 'postId', value)
+      insert into vote ("userId", "postId", value)
       values (${userId},${postId},${realValue});
 
       update post
