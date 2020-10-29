@@ -36,8 +36,8 @@ class PaginatedPosts {
 @Resolver(Post)
 export class PostResolver {
   @FieldResolver(() => String)
-  textSnippet(@Root() root: Post) {
-    return root.text.slice(0, 50);
+  textSnippet(@Root() post: Post) {
+    return post.text.slice(0, 50);
   }
 
   @Mutation(() => Boolean)
@@ -47,15 +47,15 @@ export class PostResolver {
     @Arg('value', () => Int) value: number,
     @Ctx() { req }: MyContext
   ) {
-    const isUpvote = value !== -1;
-    const realValue = isUpvote ? 1 : -1;
+    const isUpdoot = value !== -1;
+    const realValue = isUpdoot ? 1 : -1;
     const { userId } = req.session;
     // const userId = req.session.userId;
 
     await getConnection().query(`
       START TRANSACTION;
 
-      insert into vote ("userId", "postId", value)
+      insert into updoot ("userId", "postId", value)
       values (${userId},${postId},${realValue});
 
       update post
@@ -128,7 +128,7 @@ export class PostResolver {
   @Mutation(() => Post)
   @UseMiddleware(isAuth)
   async createPost(
-    @Arg('input') input: PostInput,
+    @Arg("input") input: PostInput,
     @Ctx() { req }: MyContext
   ): Promise<Post> {
     return Post.create({
@@ -139,8 +139,8 @@ export class PostResolver {
 
   @Mutation(() => Post, { nullable: true })
   async updatePost(
-    @Arg('id') id: number,
-    @Arg('title', () => String, { nullable: true }) title: string
+    @Arg("id") id: number,
+    @Arg("title", () => String, { nullable: true }) title: string
   ): Promise<Post | null> {
     const post = await Post.findOne(id);
     if (!post) {
@@ -153,7 +153,7 @@ export class PostResolver {
   }
 
   @Mutation(() => Boolean)
-  async deletePost(@Arg('id') id: number): Promise<boolean> {
+  async deletePost(@Arg("id") id: number): Promise<boolean> {
     await Post.delete(id);
     return true;
   }

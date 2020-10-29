@@ -10,8 +10,8 @@ import { buildSchema } from 'type-graphql';
 import { createConnection } from 'typeorm';
 import { COOKIE_NAME } from './constants';
 import { Post } from './entities/Post';
+import { Updoot } from './entities/Updoot';
 import { User } from './entities/User';
-import { Vote } from './entities/Vote';
 import { HelloResolver } from './resolvers/hello';
 import { PostResolver } from './resolvers/post';
 import { UserResolver } from './resolvers/user';
@@ -26,7 +26,7 @@ const main = async () => {
     password: 'postgres',
     logging: true,
     synchronize: true,
-    entities: [Post, User, Vote]
+    entities: [Post, User, Updoot]
   });
   console.log(conn);
   const app = express();

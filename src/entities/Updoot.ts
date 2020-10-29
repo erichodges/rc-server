@@ -10,19 +10,19 @@ import { User } from "./User";
 // user -> updoot <- posts
 
 @Entity()
-export class Vote extends BaseEntity {
+export class Updoot extends BaseEntity {
   @Column({ type: "int" })
   value: number;
 
   @PrimaryColumn()
   userId: string;
 
-  @ManyToOne(() => User, (user) => user.votes)
+  @ManyToOne(() => User, (user) => user.updoots)
   user: User;
 
   @PrimaryColumn()
   postId: number;
 
-  @ManyToOne(() => Post, (post) => post.votes)
+  @ManyToOne(() => Post, (post) => post.updoots)
   post: Post;
 }

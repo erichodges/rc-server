@@ -53,18 +53,18 @@ PaginatedPosts = __decorate([
     type_graphql_1.ObjectType()
 ], PaginatedPosts);
 let PostResolver = class PostResolver {
-    textSnippet(root) {
-        return root.text.slice(0, 50);
+    textSnippet(post) {
+        return post.text.slice(0, 50);
     }
     vote(postId, value, { req }) {
         return __awaiter(this, void 0, void 0, function* () {
-            const isUpvote = value !== -1;
-            const realValue = isUpvote ? 1 : -1;
+            const isUpdoot = value !== -1;
+            const realValue = isUpdoot ? 1 : -1;
             const { userId } = req.session;
             yield typeorm_1.getConnection().query(`
       START TRANSACTION;
 
-      insert into vote ("userId", "postId", value)
+      insert into updoot ("userId", "postId", value)
       values (${userId},${postId},${realValue});
 
       update post
@@ -167,7 +167,7 @@ __decorate([
 __decorate([
     type_graphql_1.Mutation(() => Post_1.Post),
     type_graphql_1.UseMiddleware(isAuth_1.isAuth),
-    __param(0, type_graphql_1.Arg('input')),
+    __param(0, type_graphql_1.Arg("input")),
     __param(1, type_graphql_1.Ctx()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [PostInput, Object]),
@@ -175,15 +175,15 @@ __decorate([
 ], PostResolver.prototype, "createPost", null);
 __decorate([
     type_graphql_1.Mutation(() => Post_1.Post, { nullable: true }),
-    __param(0, type_graphql_1.Arg('id')),
-    __param(1, type_graphql_1.Arg('title', () => String, { nullable: true })),
+    __param(0, type_graphql_1.Arg("id")),
+    __param(1, type_graphql_1.Arg("title", () => String, { nullable: true })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, String]),
     __metadata("design:returntype", Promise)
 ], PostResolver.prototype, "updatePost", null);
 __decorate([
     type_graphql_1.Mutation(() => Boolean),
-    __param(0, type_graphql_1.Arg('id')),
+    __param(0, type_graphql_1.Arg("id")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
