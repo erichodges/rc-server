@@ -50,7 +50,6 @@ export class PostResolver {
     const isUpdoot = value !== -1;
     const realValue = isUpdoot ? 1 : -1;
     const { userId } = req.session;
-    // const userId = req.session.userId;
 
     await getConnection().query(`
       START TRANSACTION;
