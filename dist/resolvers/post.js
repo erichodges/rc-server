@@ -65,7 +65,7 @@ let PostResolver = class PostResolver {
       START TRANSACTION;
 
       insert into updoot ("userId", "postId", value)
-      values (${userId},${postId},${realValue});
+      values ('${userId}',${postId},${realValue});
 
       update post
       set points = points + ${realValue}
