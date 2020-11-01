@@ -98,21 +98,6 @@ export class PostResolver {
         replacements
     )
 
-    // const qb = getConnection()
-    //   .getRepository(Post)
-    //   .createQueryBuilder('p')
-    //   .innerJoinAndSelect("p.creator", "u", 'u.id = p."creatorId"')
-    //   .orderBy('p."createdAt"', 'DESC')
-    //   .take(postLimitPlusOne);
-
-    // if (cursor) {
-    //   qb.where('p."createdAt" < :cursor', {
-    //     cursor: new Date(parseInt(cursor))
-    //   });
-    // }
-
-    // const posts = await qb.getMany();
-
     return {
       posts: posts.slice(0, postLimit),
       hasMore: posts.length === postLimitPlusOne
