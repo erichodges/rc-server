@@ -97,9 +97,16 @@ let PostResolver = class PostResolver {
         return __awaiter(this, void 0, void 0, function* () {
             const postLimit = Math.min(50, limit);
             const postLimitPlusOne = postLimit + 1;
-            const replacements = [postLimitPlusOne, req.session.userId];
+            const replacements = [postLimitPlusOne];
+            if (req.session.userId)
+                ;
+            {
+                replacements.push(req.session.userId);
+            }
+            let cursorIndex = 3;
             if (cursor) {
                 replacements.push(new Date(parseInt(cursor)));
+                cursorIndex = replacements.length;
             }
             const posts = yield typeorm_1.getConnection().query(`
       select p.*,
@@ -115,7 +122,7 @@ let PostResolver = class PostResolver {
                 : 'null as "voteStatus"'}
       from post p
       inner join public.user u on u.id = p."creatorId"
-      ${cursor ? `where p."createdAt" < $3` : ''}
+      ${cursor ? `where p."createdAt" < $${cursorIndex}` : ''}
       order by p."createdAt" DESC
       limit $1
     `, replacements);
