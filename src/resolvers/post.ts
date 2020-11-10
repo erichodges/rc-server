@@ -1,3 +1,4 @@
+import { User } from 'src/entities/User';
 import {
   Arg,
   Ctx,
@@ -39,6 +40,11 @@ export class PostResolver {
   @FieldResolver(() => String)
   textSnippet(@Root() post: Post) {
     return post.text.slice(0, 50);
+  }
+
+  @FieldResolver(() => User)
+  creator(@Root() post: Post, @Ctx() { userLoader }: MyContext) {
+    return userLoader.load(post.creatorId);
   }
 
   @Mutation(() => Boolean)
