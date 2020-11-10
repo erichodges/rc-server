@@ -1,4 +1,3 @@
-import { User } from 'src/entities/User';
 import {
   Arg,
   Ctx,
@@ -16,6 +15,7 @@ import {
 import { getConnection } from 'typeorm';
 import { Post } from '../entities/Post';
 import { Updoot } from "../entities/Updoot";
+import { User } from '../entities/User';
 import { isAuth } from '../middleware/isAuth';
 import { MyContext } from '../types';
 
